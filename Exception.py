@@ -7,11 +7,35 @@ def func():
     except:
         print("Index error")
         return 0
-    finally:
-        print("execute always")
-    #print("execute always")   #doesn't work when except block execute so finally keyword should use
-    # even try block return the value also finally block execute
+    finally:  #finally always execute even function return the value in try or ecept
+        print("Final block execute always")
+    # print("execute always")   #doesn't execute this line when try or except block return the value so finally keyword should use
 
 res=func()
 print(res)
 print("END!!!")
+
+# output
+# using print statement output
+# 1)Enter index: 2
+# 3
+# 1
+# END!!!
+
+# 2)Enter index: 5
+# Index error
+# 0
+# END!!!
+
+#using finally output
+# 1)Enter index: 2
+# 3
+# Final block execute always
+# 1
+# END!!!
+
+# 2)Enter index: 5
+# Index error
+# Final block execute always
+# 0
+# END!!!
