@@ -1,0 +1,204 @@
+What is Encapsulation in Python?
+
+Encapsulation means wrapping data (variables) and methods (functions) into a single unit (class)
+and restricting direct access to some components.
+
+In simple words:
+
+Encapsulation protects data from being modified directly.
+
+Python uses:
+
+Public members
+
+Protected members
+
+Private members
+
+These access levels help control how data is accessed or modified.
+
+🔹 Why Encapsulation is Important?
+
+Prevents accidental data modification
+
+Increases security
+
+Allows controlled access to data
+
+Helps maintain clean, modular code
+
+Supports data hiding
+
+🔹 Encapsulation Levels in Python
+✔ 1. Public members
+
+Accessible from anywhere.
+
+✔ 2. Protected members (_variable)
+
+Meant for internal use inside the class and subclasses.
+
+✔ 3. Private members (__variable)
+
+Name-mangled; cannot be accessed directly outside the class.
+
+Let's break them down with examples:
+🔹 1. Public Members
+class Student:
+    def __init__(self, name, age):
+        self.name = name       # public
+        self.age = age         # public
+
+s = Student("Aishwarya", 22)
+print(s.name)  # Allowed
+print(s.age)   # Allowed
+
+
+Public data is accessible everywhere.
+
+🔹 2. Protected Members (_variable)
+
+A protected member starts with a single underscore _.
+
+Example:
+
+class Student:
+    def __init__(self):
+        self._marks = 85   # protected variable
+
+s = Student()
+print(s._marks)  o/p->85  # Technically allowed but not recommended
+
+
+Python does not enforce protection strictly,
+but by convention:
+
+_marks should not be accessed directly from outside.
+
+🔹 3. Private Members (__variable)
+
+Private members start with double underscore __.
+
+These get name-mangled internally to:
+
+_className__variableName
+
+
+This prevents accidental access.
+
+Example:
+
+class Student:
+    def __init__(self):
+        self.__password = "abcd123"   # private variable
+
+s = Student()
+print(s.__password)     # ❌ ERROR.   #cann't access __Password from outside class
+
+
+Output:
+
+AttributeError: 'Student' object has no attribute '__password'
+
+
+So private variables are hidden.
+
+🔹 How to access private variables? (Getter/Setter methods)
+
+To access private data safely, we use methods.
+
+class Student:
+    def __init__(self):
+        self.__password = "abcd123"
+
+    def get_password(self):  # getter
+        return self.__password
+
+    def set_password(self, new_pass):  # setter
+        if len(new_pass) >= 4:
+            self.__password = new_pass
+        else:
+            print("Password too short!")
+
+s = Student()
+print(s.get_password())   # Access through getter
+s.set_password("xyz")     # Controlled update
+
+✔ Controlled access
+✔ Data protection
+✔ Validation possible
+🔹 Encapsulation Example (Real-Life)
+ATM PIN
+
+You cannot access or change PIN directly.
+You must use:
+
+insert card
+
+enter PIN
+
+press buttons
+
+The internal logic is hidden.
+
+Same in Python:
+
+Private variables = PIN
+Public methods = ATM buttons
+
+🔹 Advanced Example: Bank Account Encapsulation
+class BankAccount:
+    def __init__(self, balance):
+        self.__balance = balance  # private
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+
+    def withdraw(self, amount):
+        if 0 < amount <= self.__balance:
+            self.__balance -= amount
+        else:
+            print("Invalid or insufficient funds")
+
+    def get_balance(self):
+        return self.__balance
+
+Usage:
+acc = BankAccount(5000)
+acc.deposit(2000)
+acc.withdraw(1000)
+print(acc.get_balance())
+
+
+You can use the balance but cannot directly modify it:
+
+acc.__balance = 0   # ❌ Does NOT change actual balance
+
+
+This protects the data.
+
+🔹 Encapsulation vs Abstraction — Difference
+| Encapsulation                               | Abstraction                                 |
+| ------------------------------------------- | ------------------------------------------- |
+| Hides **data**                              | Hides **implementation**                    |
+| Achieved with **private/protected members** | Achieved using **abstract classes/methods** |
+| Focuses on **how data is accessed**         | Focuses on **what methods must do**         |
+| More about **data protection**              | More about **design/architecture**          |
+
+
+🔹 Interview Points (Very Important)
+
+Encapsulation = data hiding + controlled access
+
+Private variables use name mangling
+
+Use getters/setters to access/modify private data
+
+Python uses underscores to indicate access levels
+
+Encapsulation improves security and prevents misuse
+
+⭐ Final Summary in Simple Words
+
+Encapsulation wraps data and methods into one unit and protects the data by restricting direct access using private and protected members. You control how data is accessed using getter/setter methods.

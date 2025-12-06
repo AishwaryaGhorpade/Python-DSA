@@ -1,0 +1,168 @@
+Object-Oriented Programming (OOP) in Python — Detailed Explanation
+
+Python supports both procedural and object-oriented programming.
+OOP focuses on creating objects that contain both data (attributes) and behavior (methods).
+
+The four main pillars of OOP are:
+
+1.Encapsulation
+
+2.Abstraction
+
+3.Inheritance
+
+4.Polymorphism
+
+Before these, let’s cover the basics.
+
+🔹 Class and Object
+Class
+
+A class is a blueprint or template.
+
+class Car:
+    color = "Red"
+
+    def start(self):
+        print("Car Started")
+
+Object
+
+An object is an instance of a class.
+
+c1 = Car()
+print(c1.color)
+c1.start()
+
+🧩 1. Encapsulation
+
+Encapsulation means wrapping data and behavior into a single unit (class) + controlling access to data.
+
+Python uses:
+
+public attributes → name
+
+protected attributes → _name
+
+private attributes → __name
+
+Example:
+class Student:
+    def __init__(self, name, marks):
+        self.__name = name      # private
+        self._marks = marks     # protected
+
+    def get_name(self):
+        return self.__name
+
+s = Student("Aishwarya", 85)
+print(s.get_name())      # Access through method
+
+
+Private variables cannot be accessed directly → ensures data protection.
+
+🧩 2. Abstraction
+
+Abstraction means hiding complex implementation and showing only the required things.
+
+Python has abstract classes using the abc module.
+
+Example:
+from abc import ABC, abstractmethod
+
+class Animal(ABC):
+
+    @abstractmethod
+    def sound(self):
+        pass   # only declaration → no implementation
+
+class Dog(Animal):
+    def sound(self):
+        return "Bark"
+
+
+Why abstraction?
+
+User sees what the method does, not how it works.
+
+Encourages clean, maintainable code.
+
+Even normal methods hide logic, but abstract methods force child classes to implement the method — that’s the difference.
+
+🧩 3. Inheritance
+
+Inheritance means one class acquiring the properties and methods of another class.
+
+Python supports:
+
+Single
+
+Multilevel
+
+Multiple inheritance
+
+Hierarchical
+
+Example:
+class Parent:
+    def show(self):
+        print("Parent Method")
+
+class Child(Parent):
+    pass
+
+c = Child()
+c.show()
+
+
+Child inherits show() from Parent.
+
+🧩 4. Polymorphism
+
+Polymorphism = one name, many forms.
+
+Types:
+
+Method overriding (same method, different implementation in child)
+
+Method overloading (Python does not support directly, but we simulate using default parameters)
+
+Method overriding Example:
+class Bird:
+    def fly(self):
+        print("Bird can fly")
+
+class Penguin(Bird):
+    def fly(self):
+        print("Penguin cannot fly")
+
+b = Bird()
+p = Penguin()
+b.fly()
+p.fly()
+
+🔥 Example of All OOP Concepts Together
+from abc import ABC, abstractmethod
+
+class Vehicle(ABC):                 # Abstraction
+    def __init__(self, brand):
+        self._brand = brand         # Encapsulation
+
+    @abstractmethod
+    def start(self):
+        pass
+
+class Car(Vehicle):                 # Inheritance
+    def start(self):
+        return f"{self._brand} Car Started"  # Polymorphism (override)
+
+c1 = Car("Tesla")
+print(c1.start())
+
+🎯 Why OOP is Important in Python?
+
+✔ Organized code
+✔ Reusable (inheritance)
+✔ Easy maintenance
+✔ Scalable
+✔ Protects data
