@@ -5,7 +5,7 @@ Here is a clear, simple explanation with examples so you understand exactly how 
 🔹 What is Duck Typing?
 
 Duck Typing means:
-
+It cares only about whether the object has the required method.
 If an object has the required method, Python will use it —
 regardless of the object's class or type.
 
@@ -67,3 +67,10 @@ prog.code(VSCode())
 # Running
 # Linting
 # Executing code        
+
+
+# Here:
+
+# Function name is same
+
+# Behavior changes based on object
