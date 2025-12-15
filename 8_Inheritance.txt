@@ -1,0 +1,268 @@
+What is Inheritance in Python?
+
+Inheritance allows one class (child) to acquire the properties and methods of another class (parent).
+
+In simple words:
+
+A child class can use and modify everything from the parent class without rewriting the code.
+
+This helps with:
+
+Code reusability
+
+Clean structure
+
+Reducing duplication
+
+Extensibility
+
+🔥 Why Inheritance? (Easy Explanation)
+
+Imagine you create a class:
+
+Vehicle → speed, start(), stop()
+
+
+Then classes like:
+
+Car, Bike, Truck
+
+
+can use all these features without rewriting them.
+
+🔥 Basic Syntax
+class Parent:
+    pass
+
+class Child(Parent):
+    pass
+
+
+The child automatically inherits everything from the parent.
+
+⭐ 1. Single Inheritance
+
+One parent → One child.
+
+class A:
+    def show_A(self):
+        print("Class A method")
+
+class B(A):   # inherits A
+    def show_B(self):
+        print("Class B method")
+
+obj = B()
+obj.show_A()
+obj.show_B()
+
+⭐ 2. Multilevel Inheritance
+
+Parent → Child → Grandchild.
+
+class A:
+    def show_A(self):
+        print("A")
+
+class B(A):
+    def show_B(self):
+        print("B")
+
+class C(B):
+    def show_C(self):
+        print("C")
+
+obj = C()
+obj.show_A()
+obj.show_B()
+obj.show_C()
+
+⭐ 3. Multiple Inheritance
+
+Child inherits from multiple parents.
+
+class A:
+    def method_A(self):
+        print("From A")
+
+class B:
+    def method_B(self):
+        print("From B")
+
+class C(A, B):
+    pass
+
+obj = C()
+obj.method_A()
+obj.method_B()
+
+⭐ 4. Hierarchical Inheritance
+
+One parent → multiple child classes.
+
+class Parent:
+    def parent_method(self):
+        print("Parent")
+
+class Child1(Parent):
+    def child1_method(self):
+        print("Child1")
+
+class Child2(Parent):
+    def child2_method(self):
+        print("Child2")
+
+obj1 = Child1()
+obj2 = Child2()
+
+obj1.parent_method()
+obj2.parent_method()
+
+⭐ 5. Hybrid Inheritance
+
+Combination of multiple inheritance types.
+
+Example: Hierarchical + Multiple.
+
+⭐ 6. Using super() in Inheritance
+
+super() is used to call parent class methods.
+
+class Parent:
+    def show(self):
+        print("Parent show")
+
+class Child(Parent):
+    def show(self):
+        super().show()
+        print("Child show")
+
+obj = Child()
+obj.show()
+
+
+Output:
+
+Parent show
+Child show
+
+🔥 Constructor Inheritance
+
+Parent class constructor is inherited automatically.
+
+class Parent:
+    def __init__(self):
+        print("Parent constructor")
+
+class Child(Parent):
+    pass
+
+obj = Child()
+
+
+Output:
+
+Parent constructor
+
+🔥 Overriding Constructor
+
+Child defines its own constructor.
+
+class Parent:
+    def __init__(self):
+        print("Parent constructor")
+
+class Child(Parent):
+    def __init__(self):
+        print("Child constructor")
+
+obj = Child()
+
+
+Output:
+
+Child constructor
+
+
+Parent constructor is not called unless you manually call:
+
+super().__init__()
+
+🔹 Method Resolution Order (MRO)
+
+In multiple inheritance, Python follows the order:
+
+Child → Parent1 → Parent2 → ...
+
+
+You can check MRO using:
+
+print(ClassName.mro())
+
+🔥 Real-Life Example of Inheritance
+Parent class
+class Animal:
+    def eat(self):
+        print("Eating...")
+
+Child classes
+class Dog(Animal):
+    def bark(self):
+        print("Barking")
+
+class Cat(Animal):
+    def meow(self):
+        print("Meowing")
+
+
+Use:
+
+d = Dog()
+d.eat()
+d.bark()
+
+🔹 Inheritance + Polymorphism
+class Shape:
+    def area(self):
+        pass
+
+class Circle(Shape):
+    def area(self):
+        print("Area of circle")
+
+class Square(Shape):
+    def area(self):
+        print("Area of square")
+
+🔹 Important Rules of Inheritance
+Rule	Explanation
+Child inherits attributes & methods	No need to rewrite
+Child can override parent methods	Method overriding
+Child can extend parent methods	Use super()
+Multiple inheritance is allowed	But follow MRO
+🔥 Inheritance vs Composition (Interview)
+Inheritance	Composition
+"IS-A" relationship	"HAS-A" relationship
+Dog is a Animal	Car has a Engine
+Tightly coupled	Loosely coupled
+⭐ Final Summary
+
+Inheritance allows:
+
+✔ Code reusability
+✔ Reducing redundancy
+✔ Structure and maintainability
+✔ Method overriding (polymorphism)
+✔ Using super() to call parent code
+
+Types:
+
+Single
+
+Multilevel
+
+Multiple
+
+Hierarchical
+
+Hybrid
