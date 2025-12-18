@@ -167,7 +167,7 @@ class A:
 a = A()
 print(a._A__x)     # 10
 
-⭐ Real-Life Example
+# ⭐ Real-Life Example
 
 # Bank Account:
 
